@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://ypjknqwctxkq"]
+
+[ext_resource type="Script" path="res://scripts/jetpack.gd" id="1_rf1x1"]
+[ext_resource type="Texture2D" uid="uid://ocg402ttlv1a" path="res://assets/sprites/jetpack.png" id="2_jpko6"]
+[ext_resource type="PackedScene" uid="uid://dq4l3dvuap2qq" path="res://scenes/pedestal.tscn" id="3_8oyrb"]
+[ext_resource type="FontFile" uid="uid://0jsvumwvp1kb" path="res://assets/fonts/PixelOperator8.ttf" id="4_00ee4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v4gi2"]
+size = Vector2(14, 16)
+
+[node name="Jetpack" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(0.117187, 0.125)
+collision_mask = 2
+script = ExtResource("1_rf1x1")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+position = Vector2(0, 3.05176e-05)
+scale = Vector2(0.416667, 0.4375)
+texture = ExtResource("2_jpko6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(8.53333, 8)
+shape = SubResource("RectangleShape2D_v4gi2")
+
+[node name="Pedestal" parent="." instance=ExtResource("3_8oyrb")]
+position = Vector2(-31, -2)
+scale = Vector2(0.66934, 0.811305)
+
+[node name="Label" type="Label" parent="Pedestal"]
+offset_left = -8.96406
+offset_top = -14.791
+offset_right = 100.036
+offset_bottom = 2.20902
+theme_override_fonts/font = ExtResource("4_00ee4")
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
