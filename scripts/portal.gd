@@ -10,4 +10,4 @@ func _process(_delta: float) -> void:
 	pass
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
-	GameManager.go_back_to_level_1()
+	get_tree().change_scene_to_file("res://scenes/level_2.tscn")
